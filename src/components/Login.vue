@@ -5,7 +5,7 @@
         <!-- logo container -->
         <div class="page-logo">
 
-            <!-- Vigane! <img src="../../assets/images/paper-airplane.png" alt="PostIt Logo">-->
+            <img src="../assets/paper-airplane.png" alt="PostIt Logo">
 
         </div>
 
@@ -40,8 +40,7 @@
                         class="form-input" id="password-input" 
                         placeholder="   Password" autocomplete="new-password">
 
-                    <router-link :to="{ name: 'Header' }">
-                    <button type="submit" id="login-button" onclick="location.href='dist/html/main.html'">Log In</button></router-link>
+                    <button @click="this.$router.push(`/posts`)" type="submit" id="login-button" onclick="location.href='dist/html/main.html'">Log In</button>
 
                     <p class="smaller">
                         <a href="#">Forgot password?</a>
@@ -67,21 +66,6 @@ export default {
 <style scoped>
 /* sinine: #2671e2 */
 
-*, ::before, ::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    user-select: none; /*might cause problems
-        Porperty is nonstandard. Was suggested to not use it.   ¯\_(ツ)_/¯   */
-}
-
-body {
-    background-color: #2671e2;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: auto 600px auto;
-    grid-template-rows: auto 600px auto;
-}
 
 section {
     background-color: #ffffff;

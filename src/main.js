@@ -1,25 +1,25 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 //import Login from './components/Login'
-import Header from './components/Header'
+import Posts from './components/Posts'
 
 Vue.config.productionTip = false
+Vue.use(VueRouter)
+
+const routes = [
+  {
+    path: "/posts",
+    compoent: Posts
+  }
+];
+
+const router = new VueRouter({
+  routes
+})
 
 new Vue({
+  router,
   render: h => h(App),
 }).$mount('#app')
 
-Vue.use(Router)
-
-export default new Router({
-  routes: [
-    {
-    path: '/Posts',
-    redirect: {
-      name: 'Header'
-      },
-      component: Header
-    }
-  ]
-})
