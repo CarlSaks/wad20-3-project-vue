@@ -1,17 +1,20 @@
 <template>
   <div id="app">
     <Login/>
+    <!-- Uncomment to see Posts.vue <Posts/> -->
     <router-view></router-view>
   </div>
 </template>
 
 <script>
   import Login from './components/Login'
+  //Uncomment to see Posts.vue import Posts from './components/Posts'
 
   export default {
     name: 'App',
     components: {
       Login
+      //Uncomment to see Posts.vue Posts
     }
   }
 </script>
