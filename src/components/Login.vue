@@ -40,7 +40,8 @@
                         class="form-input" id="password-input" 
                         placeholder="   Password" autocomplete="new-password">
 
-                    <button @click="this.$router.push(`/posts`)" type="submit" id="login-button" onclick="location.href='dist/html/main.html'">Log In</button>
+<!--                   <button type="submit" id="login-button">Log In</button>-->
+                   <router-link to="/posts" id="login-button">Log In</router-link>
 
                     <p class="smaller">
                         <a href="#">Forgot password?</a>
@@ -128,15 +129,14 @@ input[class="form-input"] {               /* class selector 2*/
     height: 17%;
     margin: 5px;
     color: transparent;
-    text-shadow: 0px 0px .5px rgb(49, 49, 49);
+    text-shadow: 0 0 1px rgb(49, 49, 49);
     border: 1px solid gray;
     border-radius: 3px;
-    padding: 10px;
-    padding-left: 5px;
-    font-size: .8em;
+   padding: 10px 10px 10px 5px;
+   font-size: .8em;
 }
 .form-input::placeholder {
-    text-shadow: 0px 0px .5px rgb(105, 105, 105);
+    text-shadow: 0 0 1px rgb(105, 105, 105);
 }
 
 .form-input:placeholder-shown {
@@ -144,7 +144,7 @@ input[class="form-input"] {               /* class selector 2*/
     box-shadow: none;
 }
 
-#login-button {             /* ID selector */
+#login-button{             /* ID selector */
     align-self: center;
     width: 30%;
     height: 15%;
@@ -153,9 +153,11 @@ input[class="form-input"] {               /* class selector 2*/
     color: #ffffff;
     border: 1px solid rgb(34, 89, 209);
     border-radius: 7px;
+   text-decoration: none;
+   padding-top: 5px;
 }
 
-#login-button:hover {       /* pseude-class selector */
+#login-button:hover {       /* pseudo-class selector */
     background-color: #317ae9;
     border: 1px solid #317ae9;
     cursor: pointer;
@@ -168,7 +170,7 @@ input[class="form-input"] {               /* class selector 2*/
 .page-logo {
     position: absolute;
 }
-.page-logo img {            /* decendant selector */
+.page-logo img {            /* descendant selector */
     position: relative;
     top: 20px;
     left: 20px;
