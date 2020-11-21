@@ -27,9 +27,7 @@ const store = new Vuex.Store({
 
   },
   getters: {
-    isLogin() {
-      return
-    }
+    
   }
 })
 
