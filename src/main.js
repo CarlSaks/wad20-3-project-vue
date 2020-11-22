@@ -6,7 +6,7 @@ import VueRouter from 'vue-router'
 import Login from './components/Login'
 import Posts from './components/Posts'
 import Browse from './components/Browse'
-import User from "@/models/User"
+import User from "@/models/User";
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -26,7 +26,7 @@ const store = new Vuex.Store({
 
   state: {
     user: new User(),
-    profiles: [],
+    users: [],
     posts: []
   },
 
@@ -63,7 +63,10 @@ const store = new Vuex.Store({
       state.users = users
     },
     assignUser(state, user) {
-      state.user = user
+      console.log(user, state.user.id)
+      if (state.user.firstname !== user.firstname) {
+        state.user = new User(user.firstname, user.lastname, user.email, user.avatar)
+      }
     }
 
   },
@@ -71,12 +74,14 @@ const store = new Vuex.Store({
 
   getters: {
     followingUser: (state) => (id) => {
+      console.log(state.user.following, state.user.following.indexOf(id) > -1)
       return state.user.following.indexOf(id)  > -1
     },
 
     liked: (state) => (id) => {
+      console.log(state.user.likes, state.user.likes.indexOf(id) > -1)
       return state.user.likes.indexOf(id) > -1
-    }
+    },
   },
 
 

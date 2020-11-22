@@ -33,6 +33,10 @@ export default {
          return this.$store.state.users
       },
    },
+
+   mounted() {
+      this.$store.dispatch('getUsers')
+   }
 }
 </script>
 
