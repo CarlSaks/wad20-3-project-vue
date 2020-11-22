@@ -1,50 +1,23 @@
 <template>
    <section id="browse-container">
 
-      <div v-for="(user, index) in users" :key="index" class="profile">
+      <div v-for="user in users" :key="user.id" class="profile">
          <div class="small-avatar">
 
             <img :src="user.avatar" alt="">
 
          </div>
 
-         <h2>{{ user | fullName }}</h2>
+         <h2>{{ user["firstname"] + " " + user["lastname"] }}</h2>
 
-         <FollowUserButton :index="Number.parseInt(index)"/>
+         <FollowUserButton :index="user.id"/>
 
       </div>
 
-<!--   esimene kasutaja   -->
-      <div class="profile">
-         <div class="small-avatar"><img
-             src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=334&amp;q=80"
-             alt=""></div>
-         <h2>John Doe</h2>
-         <button class="follow-button">Follow</button>
-      </div>
-
-<!--   teine kasutaja   -->
-      <div class="profile">
-         <div class="small-avatar"><img
-             src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=334&amp;q=80"
-             alt=""></div>
-         <h2>Gordon Freeman</h2>
-         <button class="follow-button">Follow</button>
-      </div>
-
-<!--   kolmas kasutaja   -->
-      <div class="profile">
-         <div class="small-avatar"><img
-             src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=334&amp;q=80"
-             alt=""></div>
-         <h2>John Doe</h2>
-         <button class="follow-button">Follow</button>
-      </div>
    </section>
 </template>
 
 <script>
-// import User from "@/components/User";
 
 import FollowUserButton from "@/components/FollowUserButton";
 
@@ -52,33 +25,14 @@ export default {
    name: "Browse",
 
    components: {
-      // User,
       FollowUserButton
    },
 
    computed: {
-      id() {
-         return this.$route.params.id
-      },
       users() {
-         let result = {}
-
-         for (let i in this.$store.state.users) {
-
-            if (i != this.id) {
-               result[i] = this.$store.state.users[i]
-            }
-         }
-
-         return result
-      }
+         return this.$store.state.users
+      },
    },
-
-   filters: {
-      fullName(value) {
-         return value.firstName + " " + value.lastName
-      }
-   }
 }
 </script>
 

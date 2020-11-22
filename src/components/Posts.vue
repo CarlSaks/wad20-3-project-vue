@@ -4,7 +4,7 @@
 
 <!--     new posts should be read into state posts    -->
 
-      <div class="post" v-for="(post, index) in posts" :key="index">
+      <div class="post" v-for="post in posts" :key="post.id">
          <div class="post-author">
 
             <span class="post-author-info">
@@ -19,8 +19,10 @@
          </div>
 
          <div v-if="post.media != null" class="post-image">
-            <img v-if="post.media.type === 'image'" :src="post.media.url" alt="">git
+
+            <img v-if="post.media.type === 'image'" :src="post.media.url" alt="">
             <video v-else controls autoplay loop :src="post.media.url"/>
+
          </div>
 
          <div class="post-title">
@@ -28,7 +30,7 @@
          </div>
 
          <div class="post-actions">
-            <button type="button" name="like" class="like-button">{{ post.likes }}</button>
+            <LikePostButton :id="post.id" :likes="post.likes"/>
          </div>
 
       </div>
@@ -38,13 +40,13 @@
 </template>
 
 <script>
-// import Post from './Post'
+import LikePostButton from "@/components/LikePostButton";
 
 export default {
    name: 'Posts',
 
    components: {
-      // Post,
+     LikePostButton,
    },
 
    computed: {
@@ -113,23 +115,4 @@ section {
    float: left;
    margin: 5px 0;
 }
-
-.like-button {
-   background-image: url(../assets/like_button.png);
-   background-size: 15px;
-   background-repeat: no-repeat;
-   background-position: 5px center;
-   background-color: #8a8a8a;
-   width: 60px;
-   height: 25px;
-   padding-left: 23px;
-   line-height: 10px;
-   text-align: left;
-   border: none;
-}
-
-.like-button.liked {
-   background-color: #01579b;
-}
-
 </style>

@@ -40,21 +40,29 @@ const store = new Vuex.Store({
 
       if (index > -1) {
         state.user.following.splice(index, 1)
-        console.log("false", id, index, state.user.following)
         return false
       }
 
       state.user.following.push(id)
-      console.log("true", id, index, state.user.following)
+      return true
+    },
+
+    toggleLike: (state, id) => {
+      let index = state.user.likes.indexOf(id)
+
+      if (index > -1) {
+        state.user.likes.splice(index, 1)
+        return false
+      }
+
+      state.user.likes.push(id)
       return true
     },
 
     assignPosts(state, posts) {
-      console.log(posts)
       state.posts = posts
     },
     assignUsers(state, users){
-      console.log(users)
       state.users = users
     },
 
@@ -65,6 +73,10 @@ const store = new Vuex.Store({
     followingUser: (state) => (id) => {
       return state.user.following.indexOf(id)  > -1
     },
+
+    liked: (state) => (id) => {
+      return state.user.likes.indexOf(id) > -1
+    }
   },
 
 
