@@ -1,130 +1,171 @@
 <template>
 
-    <section>
-       <!--First post-->
-       <div class="post">
-          <ul>
-             <li>
-                <div class="user-info">
-                   <img id="user" src="../assets/me.png" alt="user pic">
-                   <h1>Sep 18, 2020 15:16</h1>
-                </div>
-                <div>
-                   <img id="picture" src="https://qph.fs.quoracdn.net/main-qimg-8c0c321b73dcb61cbf5edc5d07b92d68.webp" alt="rain">
-                   <h2>I think it's going to rain</h2>
-                   <img id="thumbs-up" src="../assets/like_button.png" alt="like">
-                </div>
-             </li>
-          </ul>
-       </div>
+   <section>
 
-       <!--Second post-->
-       <div class="post">
-          <ul>
-             <li>
-                <div class="user-info">
-                   <img id="user" src="../assets/me.png" alt="user pic">
-                   <h1>Sep 18, 2020 15:16</h1>
-                </div>
-                <div>
-                   <h2>Which weighs more, a pound of feathers or a pound of bricks? </h2>
-                   <img id="thumbs-up" src="../assets/like_button.png" alt="like">
-                </div>
-             </li>
-          </ul>
-       </div>
+<!--     new posts should be read into state posts    -->
 
-       <!--Third post-->
-       <div class="post">
-          <ul>
-             <li>
-                <div class="user-info">
-                   <img id="user" src="../assets/me.png" alt="user pic">
-                   <h1>Sep 18, 2020 17:18</h1>
-                </div>
-                <div>
-                   <img id="picture" src="https://sm.ign.com/t/ign_ap/articlepage/r/rumor-batm/rumor-batman-arkham-collection-coming-to-xbox-one_8kyn.1280.jpg" alt="feeling cute">
-                   <h2>Felt cute, might delete later</h2>
-                   <img id="thumbs-up" src="../assets/like_button.png" alt="like">
-                </div>
-             </li>
-          </ul>
-       </div>
-    </section>
+      <div class="post" v-for="(post, index) in posts" :key="index">
+         <div class="post-author">
+
+            <span class="post-author-info">
+
+               <img :src="post.avatar" alt="">
+
+               <small>{{ post.name }}</small>
+
+            </span>
+
+            <small>{{ post.date }}</small>
+         </div>
+
+         <div class="post-image">
+            <img :src="post.media" alt="">
+         </div>
+
+         <div class="post-title">
+            <h3>{{ post.text }}</h3>
+         </div>
+
+         <div class="post-actions">
+            <button type="button" name="like" class="like-button">{{ post.likes }}</button>
+         </div>
+
+      </div>
+
+      <!--First post-->
+      <div class="post">
+         <div class="post-author">
+            <span class="post-author-info">
+               <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=334&amp;q=80" alt="">
+               <small>Gordon Freeman</small>
+            </span>
+            <small>Sep 18, 2020 15:16</small>
+         </div>
+         <div class="post-image"><img
+             src="http://www.pastatdude.com/uploaded_images/hl2-2007-10-20-16-36-36-32-713089.jpg" alt=""></div>
+         <div class="post-title">
+            <h3>I think it's going to rain</h3>
+         </div>
+         <div class="post-actions">
+            <button type="button" name="like" class="like-button">15k</button>
+         </div>
+      </div>
+
+      <!--Second post-->
+      <div class="post">
+         <div class="post-author"><span class="post-author-info"><img
+             src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=334&amp;q=80"
+             alt=""><small>John Doe</small></span><small>Sep 18, 2020 16:17</small></div>
+         <div class="post-title"><h3>Which weighs more, a pound of feathers or a pound of bricks?</h3></div>
+         <div class="post-actions">
+            <button type="button" name="like" class="like-button">25k</button>
+         </div>
+      </div>
+
+      <!--Third post-->
+      <div class="post">
+         <div class="post-author"><span class="post-author-info"><img
+             src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80"
+             alt=""><small>Bruce Wayne</small></span><small>Sep 18, 2020 17:18</small></div>
+         <div class="post-image"><img
+             src="https://i.pcmag.com/imagery/reviews/00EfzjLJNL6FNKVxviGg7Zw-2.1569473216.fit_scale.size_1182x667.jpg"
+             alt=""></div>
+         <div class="post-title"><h3>Felt cute, might delete later</h3></div>
+         <div class="post-actions">
+            <button type="button" name="like" class="like-button">100k</button>
+         </div>
+      </div>
+   </section>
 
 </template>
 
 <script>
+// import Post from './Post'
 
 export default {
-    name: 'Posts',
+   name: 'Posts',
+   components: {
+      // Post,
+   },
+   computed: {
+      posts() {
+         return this.$store.state.posts
+      },
+   },
 }
 </script>
 
 <style scoped>
-
-/*Posts section*/
 section {
-    background: white;
-    width: 900px;
-    height: 100%;
-    margin: 0 auto;
-    padding: 90px;
+   width: 900px;
+   min-height: 100%;
+   margin: auto auto;
+   padding: 90px 15px 15px 15px;
+   background-color: #ffffff;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+.post {
+   width: 80%;
+   margin: 15px auto;
+   box-shadow: 0 0 15px rgba(38, 50, 56, 0.33);
+   border-radius: 5px;
+   display: flex;
+   flex-direction: column;
+
+   padding: 10px;
 }
 
-/*First line of post*/
-section div.user-info {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+.post .post-author-info img {
+   width: 30px;
+   height: 30px;
+   border-radius: 100%;
+   object-fit: cover;
+   object-position: top;
+   margin: 5px;
 }
 
-/*Users picture*/
-#user {
-    height: 30px;
-    padding: 10px;
-    position: absolute;
+.post .post-image img, video {
+   width: 100%;
+   min-height: 150px;
+   max-height: 350px;
+   object-fit: cover;
+   object-position: top center;
 }
 
-/*Date and time*/
-h1 {
-   padding: 5px;
-    color:  gray;
-    font-size: small;
-   margin: 10px 10px 10px auto;
+.post .post-author, .post-author-info {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   padding-bottom: 5px;
 }
 
-/*Posted text*/
-h2 {
-    font-size: 1.4em;
-    padding-left: 10px;
+.post .post-title {
+   text-align: left;
+   padding: 10px 0;
 }
 
-/*Posted picture*/
-#picture {
-    height: 500px;
-    width: 100%;
-    flex-grow: 4;
+.post .post-actions button {
+   float: left;
+   margin: 5px 0;
 }
 
-
-/*Thumbs up icon*/
-#thumbs-up {
-    width: 33px;
-    padding: 8px;
+.like-button {
+   background-image: url(../assets/like_button.png);
+   background-size: 15px;
+   background-repeat: no-repeat;
+   background-position: 5px center;
+   background-color: #8a8a8a;
+   width: 60px;
+   height: 25px;
+   padding-left: 23px;
+   line-height: 10px;
+   text-align: left;
+   border: none;
 }
 
-/*One post*/
-section div.post{
-    display: flex;
-    flex-direction: column;
-    box-shadow: 1px 1px 50px gray;
-    border-radius: 4px;
+.like-button.liked {
+   background-color: #01579b;
 }
 
 </style>

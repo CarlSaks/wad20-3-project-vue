@@ -9,7 +9,7 @@
 </template>
 
 <script>
-  import Header from './components/header'
+  import Header from './components/Header'
 
   export default {
     name: 'App',
@@ -26,7 +26,6 @@
    -moz-osx-font-smoothing: grayscale;
    text-align: center;
    color: #2c3e50;
-//margin-top: 60px;
    height: 100vh;
    display: grid;
 }
@@ -36,17 +35,26 @@ body {
    margin: 0;
 }
 
-* {
-   font-family: Georgia, 'Times New Roman', Times, serif;
-   font-weight: normal;
-   font-size: 1.04em;
-}
-
 
 *, ::before, ::after {
    box-sizing: border-box;
    margin: 0;
    padding: 0;
-   user-select: none;
+   font-family: 'Roboto Slab', serif;
+   outline: none;
+}
+
+button {
+   padding: 8px 16px;
+   margin: 4px 0;
+   color: #ffffff;
+   background-color: #01579b;
+   border: none;
+   border-radius: 4px;
+}
+
+button:hover {
+   box-shadow: 0 0 5px rgba(38, 50, 56, 0.7);
+   cursor: pointer;
 }
 </style>
