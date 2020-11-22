@@ -76,7 +76,7 @@ name: "Header",
    box-sizing: border-box;
 }
 
-section[id='Header'] {
+section {
    position: fixed;
    z-index: 1;
    top: 0;
@@ -89,19 +89,19 @@ section[id='Header'] {
    padding: 5px;
 }
 
-section[id='Header'] #router {
+section #router {
    height: inherit;
 }
 
-section[id='Header']:hover {
+section:hover {
    box-shadow: 0 -20px 30px #4d4d4d;
 }
 
-section[id='Header'] div {
+section div {
    height: 30px;
 }
 
-section[id='Header'] div img {
+section div img {
    height: inherit;
    border-radius: 100%;
    object-fit: cover;
@@ -109,18 +109,18 @@ section[id='Header'] div img {
    margin: 0 10px;
 }
 
-section[id='Header'] .search-container {
+section .search-container {
    width: 50%;
    max-width: 700px;
 }
 
-section[id='Header'] .search-container > input {
+section .search-container > input {
    height: 30px;
    width: 75%;
    border: 1px solid #e0e0e0;
 }
 
-section[id='Header'] .search-container > button {
+section .search-container > button {
    height: 30px;
    width: 25%;
    border-top-left-radius: 0;
@@ -153,5 +153,8 @@ li:last-child {
 }
 li:first-child {
    border-bottom: none;
+}
+.avatar {
+   width: 30px;
 }
 </style>
