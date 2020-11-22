@@ -20,7 +20,7 @@
          <div v-if="isHidden" id="dropdown">
 
                <ul class="root">
-                  <li>{{ user['firstname'] + " " + user['lastname'] }}</li>
+                  <li>{{ user | fullName }}</li>
                   <li>{{ user.email }}</li>
                   <li>
                      <router-link to="/browse">
@@ -58,6 +58,12 @@ name: "Header",
 
    mounted() {
       this.$store.dispatch('getUser')
+   },
+
+   filters: {
+      fullName(user) {
+         return user.firstname + " " + user.lastname
+      }
    }
 }
 
