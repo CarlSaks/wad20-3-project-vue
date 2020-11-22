@@ -7,7 +7,6 @@ import Login from './components/Login'
 import Posts from './components/Posts'
 import Browse from './components/Browse'
 import User from "@/models/User"
-//import Post from "@/models/Post"
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -33,8 +32,6 @@ const store = new Vuex.Store({
 
 
   mutations: {
-
-    // toggle follow buttons
     toggleFollow: (state, id) => {
       let index = state.user.following.indexOf(id)
 
@@ -62,9 +59,12 @@ const store = new Vuex.Store({
     assignPosts(state, posts) {
       state.posts = posts
     },
-    assignUsers(state, users){
+    assignUsers(state, users) {
       state.users = users
     },
+    assignUser(state, user) {
+      state.user = user
+    }
 
   },
 
@@ -81,7 +81,6 @@ const store = new Vuex.Store({
 
 
   actions: {
-
     getPosts ({commit}) {
       Axios.get("https://private-anon-5c37796155-wad20postit.apiary-mock.com/posts")
           .then(response => commit("assignPosts", response.data))
@@ -91,7 +90,13 @@ const store = new Vuex.Store({
     getUsers ({commit}){
       Axios.get("https://private-anon-c71abc3c34-wad20postit.apiary-mock.com/profiles")
           .then(response => commit("assignUsers", response.data))
-          .catch(error => console.log("Failed to fetch profiles" + error))
+          .catch(error => console.log("Failed to fetch users" + error))
+    },
+
+    getUser ({ commit }) {
+      Axios.get("https://private-anon-baef67fb15-wad20postit.apiary-mock.com/users/1")
+          .then(response => commit("assignUser", response.data))
+          .catch(error => console.log("Failed to fetch user" + error))
     },
   },
 })
