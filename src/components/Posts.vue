@@ -19,7 +19,7 @@
          </div>
 
          <div v-if="post.media != null" class="post-image">
-            <img v-if="post.media.type === 'image'" :src="post.media.url" alt="">git
+            <img v-if="post.media.type === 'image'" :src="post.media.url" alt="">
             <video v-else controls autoplay loop :src="post.media.url"/>
          </div>
 

@@ -30,7 +30,16 @@
 
 <script>
 export default {
-name: "Post"
+name: "Post",
+  props: {
+  index: Number,
+    liked: Boolean
+  },
+  computed: {
+  post: function() {
+    return this.$store.getters.getPost(this)
+  }
+  }
 }
 </script>
 

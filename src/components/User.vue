@@ -1,25 +1,32 @@
 <template>
    <div class="profile">
-<!--      <div class="small-avatar">-->
-
-<!--         <img :src="" alt="">-->
-
-<!--      </div>-->
-
-<!--      <h2>Name</h2>-->
-
-<!--      <button-->
-
-<!--      >Follow</button>-->
-
+     <img :src="user.avatar" alt="No image!" >
+     <h2>{user.firstname} {user.lastname}</h2>
+     <button :class="{'followed': followed}" @click=isfollowed type="button" class="follow-button">Follow</button>
    </div>
 </template>
 
 <script>
 
 export default {
-   name: "profile"
-   }
+  name:"User",
+  props:{
+      index: Number,
+      isfollowed: Boolean
+  },
+  computed: {
+    user: function(){
+      return this.$store.getters.getUser(this.index)
+    }
+  },
+  methods:{
+   toggleisFollowed: function(){
+      return this.isfollowed = !this.isfollowed
+    }
+  }
+}
+
+
 </script>
 
 <style scoped>

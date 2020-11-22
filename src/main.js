@@ -79,7 +79,7 @@ const store = new Vuex.Store({
     getUsers ({commit}){
       Axios.get("https://private-anon-c71abc3c34-wad20postit.apiary-mock.com/profiles")
           .then(response => commit("assignUsers", response.data))
-          .catch(error => console.log("Failed to fetch profiles" + error))
+          .catch(error => console.log("Failed to fetch users" + error))
     },
   },
 })
