@@ -7,7 +7,7 @@ import Login from './components/Login'
 import Posts from './components/Posts'
 import Browse from './components/Browse'
 import User from "@/models/User"
-import Post from "@/models/Post"
+//import Post from "@/models/Post"
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -33,7 +33,7 @@ const store = new Vuex.Store({
         "https://dch81km8r5tow.cloudfront.net/wp-content/uploads/2019/02/Cover-photo-of-Limmy-copy.jpg"),
 
     // browser profiles
-    users: [
+    users: [ /*
         // new User()
         new User(
             "Kathrine",
@@ -45,10 +45,10 @@ const store = new Vuex.Store({
           "Saks",
           "c2rl.saks@gmail.com",
           "https://dch81km8r5tow.cloudfront.net/wp-content/uploads/2019/02/Cover-photo-of-Limmy-copy.jpg")
-    ],
+    */],
 
     // all posts
-    posts: [
+    posts: [ /*
         // new Post()
 
         new Post(
@@ -60,7 +60,7 @@ const store = new Vuex.Store({
             new Date,
             "https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fsnowrunner%2Fhome%2FSnowRunner_Screenshot_01_nologo-1920x1080-53d86bf87615b553f7fc071e1fe42aa7837b59af.jpg",
             "Aye! Finally in Alaska!!!"
-        )
+        ) */
     ]
   },
   mutations: {
@@ -78,7 +78,30 @@ const store = new Vuex.Store({
       state.user.following.push(id)
       console.log("true", id, index, state.user.following)
       return true
-    }
+    },
+
+    actions: {
+
+      getPosts ({commit}) {
+        Axios.get("https://private-anon-5c37796155-wad20postit.apiary-mock.com/posts")
+            .then(response => commit("assignPosts", response.data))
+      .catch(error => console.log("Failed to fetch posts" + error))
+      },
+
+      getUsers ({commit}){
+        Axios.get("https://private-anon-c71abc3c34-wad20postit.apiary-mock.com/profiles")
+            .then(response => commit("assignUsers", response.data))
+      .catch(error => console.log("Failed to fetch profiles" + error))
+      },
+    },
+
+    assignPosts(state, posts) {
+      state.posts = posts
+    },
+    assignUsers(state, users){
+      state.users = users
+    },
+
   },
   getters: {
     followingUser: (state) => (id) => {
