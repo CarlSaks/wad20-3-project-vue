@@ -9,17 +9,18 @@
 
             <span class="post-author-info">
 
-               <img :src="post.avatar" alt="">
+               <img :src="post.author.avatar" alt="">
 
-               <small>{{ post.name }}</small>
+               <small>{{ post.author['firstname'] + " " + post.author['lastname'] }}</small>
 
             </span>
 
-            <small>{{ post.date }}</small>
+            <small>{{ post['createTime'] }}</small>
          </div>
 
-         <div class="post-image">
-            <img :src="post.media" alt="">
+         <div v-if="post.media != null" class="post-image">
+            <img v-if="post.media.type === 'image'" :src="post.media.url" alt="">
+            <video v-else controls autoplay loop :src="post.media.url"/>
          </div>
 
          <div class="post-title">
@@ -32,49 +33,6 @@
 
       </div>
 
-      <!--First post-->
-      <div class="post">
-         <div class="post-author">
-            <span class="post-author-info">
-               <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=334&amp;q=80" alt="">
-               <small>Gordon Freeman</small>
-            </span>
-            <small>Sep 18, 2020 15:16</small>
-         </div>
-         <div class="post-image"><img
-             src="http://www.pastatdude.com/uploaded_images/hl2-2007-10-20-16-36-36-32-713089.jpg" alt=""></div>
-         <div class="post-title">
-            <h3>I think it's going to rain</h3>
-         </div>
-         <div class="post-actions">
-            <button type="button" name="like" class="like-button">15k</button>
-         </div>
-      </div>
-
-      <!--Second post-->
-      <div class="post">
-         <div class="post-author"><span class="post-author-info"><img
-             src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=334&amp;q=80"
-             alt=""><small>John Doe</small></span><small>Sep 18, 2020 16:17</small></div>
-         <div class="post-title"><h3>Which weighs more, a pound of feathers or a pound of bricks?</h3></div>
-         <div class="post-actions">
-            <button type="button" name="like" class="like-button">25k</button>
-         </div>
-      </div>
-
-      <!--Third post-->
-      <div class="post">
-         <div class="post-author"><span class="post-author-info"><img
-             src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80"
-             alt=""><small>Bruce Wayne</small></span><small>Sep 18, 2020 17:18</small></div>
-         <div class="post-image"><img
-             src="https://i.pcmag.com/imagery/reviews/00EfzjLJNL6FNKVxviGg7Zw-2.1569473216.fit_scale.size_1182x667.jpg"
-             alt=""></div>
-         <div class="post-title"><h3>Felt cute, might delete later</h3></div>
-         <div class="post-actions">
-            <button type="button" name="like" class="like-button">100k</button>
-         </div>
-      </div>
    </section>
 
 </template>
@@ -84,14 +42,20 @@
 
 export default {
    name: 'Posts',
+
    components: {
       // Post,
    },
+
    computed: {
       posts() {
          return this.$store.state.posts
       },
    },
+
+   mounted() {
+      this.$store.dispatch('getPosts')
+   }
 }
 </script>
 

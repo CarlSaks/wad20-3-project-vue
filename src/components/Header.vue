@@ -1,5 +1,5 @@
 <template>
-   <section id="header">
+   <section id="Header">
       <div class="logo-container">
 
          <router-link to="/posts" id="router">
@@ -26,7 +26,7 @@
 import Options from './Options'
 
 export default {
-name: "header",
+name: "Header",
    components: {
       Options,
    },
@@ -45,7 +45,7 @@ name: "header",
    box-sizing: border-box;
 }
 
-section[id='header'] {
+section[id='Header'] {
    position: fixed;
    z-index: 1;
    top: 0;
@@ -58,19 +58,19 @@ section[id='header'] {
    padding: 5px;
 }
 
-section[id='header'] #router {
+section[id='Header'] #router {
    height: inherit;
 }
 
-section[id='header']:hover {
+section[id='Header']:hover {
    box-shadow: 0 -20px 30px #4d4d4d;
 }
 
-section[id='header'] div {
+section[id='Header'] div {
    height: 30px;
 }
 
-section[id='header'] div img {
+section[id='Header'] div img {
    height: inherit;
    border-radius: 100%;
    object-fit: cover;
@@ -78,18 +78,18 @@ section[id='header'] div img {
    margin: 0 10px;
 }
 
-section[id='header'] .search-container {
+section[id='Header'] .search-container {
    width: 50%;
    max-width: 700px;
 }
 
-section[id='header'] .search-container > input {
+section[id='Header'] .search-container > input {
    height: 30px;
    width: 75%;
    border: 1px solid #e0e0e0;
 }
 
-section[id='header'] .search-container > button {
+section[id='Header'] .search-container > button {
    height: 30px;
    width: 25%;
    border-top-left-radius: 0;
