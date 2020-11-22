@@ -1,8 +1,7 @@
 <template>
    <section id="dropdown">
       <ul class="root">
-         <li id="name" ></li>
-         <li id="email"></li>
+        <User></User>
          <li>
             <router-link to="/browse">
                <a>Browse</a>
@@ -18,9 +17,21 @@
 </template>
 
 <script>
+import User from './User.vue'
 
 export default {
-name: "options"
+name: "options",
+  components: {
+    User,
+  },
+  beforeCreate() {
+    this.$store.dispatch("getUser")
+  },
+  data() {
+    return {
+      isHidden: false
+    }
+  }
 }
 </script>
 
